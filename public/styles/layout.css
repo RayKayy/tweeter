@@ -16,11 +16,27 @@ html {
  */
 
 body {
+  position: relative;
   margin: 0;
   color: #244751;
   background-color: #eee;
 }
 
+main {
+  display: block;
+  position: relative;
+  height: 100%;
+  padding: 2em;
+  top: 80px;
+  width: 450px;
+  margin: auto;
+  background: white;
+}
+
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
+
+ #tweet-container {
+   margin-top: 20px;
+ }
