@@ -54,10 +54,16 @@ const data = [
 
 
 function createTweetElement(db) {
+  const date = new Date(db.created_at).toLocaleTimeString();
   const $tweet = $("<article>").addClass("single-tweet");
-  const header = `<header class="t-header"><img class="avatar" src="${db.user.avatars.small}"><strong class="username">${db.user.name}</strong><small class="user-tag">${db.user.handle}r</small></header>`
+  const header = `
+    <header class="t-header">
+      <img class="avatar" src="${db.user.avatars.small}">
+      <strong class="username">${db.user.name}</strong>
+      <small class="user-tag">${db.user.handle}r</small>
+    </header>`
   const body = `<p class="tweet-body">${db.content.text}</p>`
-  const footer = `<footer class="created-on">${new Date(db.created_at).toLocaleTimeString()}</footer>`
+  const footer = `<footer class="created-on">${date}</footer>`
 
   $tweet.append(header);
   $tweet.append(body);
