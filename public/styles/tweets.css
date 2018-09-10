@@ -1,0 +1,53 @@
+.single-tweet {
+  border: 1px solid rgb(241, 241, 241);
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.single-tweet:hover .t-header{
+  opacity: 1;
+}
+
+.single-tweet:hover {
+ border: 1px solid lightgrey;
+}
+
+.avatar {
+  width: 7vh;
+  height: 7vh;
+  margin-top: 3%;
+  margin-left: 3%;
+  border-radius: 15px;
+}
+
+.t-header {
+  position: relative;
+  background-color: lightgrey;
+  height: 10vh;
+  line-height: 10vh;
+  opacity: .5;
+}
+
+.username {
+  position: absolute;
+  top: 0;
+  margin-left: 5px;
+}
+
+.created-on {
+  border-top: .5px solid rgb(231, 231, 231);
+  font-size: .8em;
+  height: 3em;
+  line-height: 3em;
+  padding-left: 3%;
+}
+
+.tweet-body {
+  margin-left: 3%;
+  opacity: 1;
+}
+
+.user-tag {
+  position: absolute;
+  right: 3%;
+}
