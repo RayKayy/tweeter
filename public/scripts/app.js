@@ -15,12 +15,12 @@ function createTweetElement(db) {
   const $tweet = $("<article>").addClass("single-tweet");
   const header = `
     <header class="t-header">
-      <img class="avatar" src="${db.user.avatars.small}">
-      <strong class="username">${db.user.name}</strong>
-      <small class="user-tag">${db.user.handle}r</small>
+      <img class="avatar" src="${escape(db.user.avatars.small)}">
+      <strong class="username">${escape(db.user.name)}</strong>
+      <small class="user-tag">${escape(db.user.handle)}r</small>
     </header>`
-  const body = `<p class="tweet-body">${db.content.text}</p>`
-  const footer = `<footer class="created-on">${ago}</footer>`
+  const body = `<p class="tweet-body">${escape(db.content.text)}</p>`
+  const footer = `<footer class="created-on">${escape(ago)}</footer>`
 
   $tweet.append(header);
   $tweet.append(body);
@@ -63,6 +63,13 @@ function loadTweets() {
     $('#tweet-container').empty();
     renderTweet(data);
   })
+}
+
+// Helper function to escape text to prevent XSS;
+function escape(str) {
+  const div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
 }
 
 
