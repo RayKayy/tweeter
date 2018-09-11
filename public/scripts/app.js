@@ -37,14 +37,24 @@ function renderTweet(arr) {
 
 // Intercepts form submition and use AJAX instead.
 function formSubmit() {
+  const $error = $("#error-message");
   const $post = $('#create-tweet');
   $post.on('submit', function(e) {
+    $error.hide({
+      opacity: 'toggle',
+    });
     e.preventDefault();
     const data = $(this).serialize()
     if (data.length === 5) {
-      window.alert('Tweets cannot be empty');
+      $error.text('Error: Tweet cannot be empty');
+      $error.show({
+        opacity: 'toggle',
+      });
     } else if (data.length > 145) {
-      window.alert('Tweets cannot be longer than 140 characters.');
+      $error.text('Error: Tweets cannot exceed 140 characters.');
+      $error.show({
+        opacity: 'toggle',
+      });
     } else {
       $.ajax("/tweets", { method: 'POST', data })
       .then(() => {
@@ -72,8 +82,20 @@ function escape(str) {
   return div.innerHTML;
 }
 
+function toggleCompose() {
+  const $button = $('#compose');
+  $button.click(() => {
+    $('.new-tweet').animate({
+      height: "toggle",
+      opacity: "toggle",
+    })
+    $('.new-tweet textarea').focus();
+  });
+}
+
 
 $(document).ready(function () {
   loadTweets();
   formSubmit();
+  toggleCompose();
 });

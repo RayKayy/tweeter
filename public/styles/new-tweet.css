@@ -30,6 +30,17 @@
   text-align: right;
 }
 
+.new-tweet #error-message {
+  width: 95%;
+  display: none;
+  background-color: lightcoral;
+  border: 1px solid red;
+  margin: 10px auto;
+  border-radius: 10px;
+  padding: 5px;
+  text-align: center;
+}
+
 .invalid {
   color: red;
 }

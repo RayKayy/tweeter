@@ -28,8 +28,14 @@
 
     <!-- Top nav bar (fixed) -->
     <nav id="nav-bar">
-      <img class="logo" src="/images/bird.png">
-      <span class="header">Tweeter</span>
+      <div>
+        <img class="logo" src="/images/bird.png">
+        <span class="header">Tweeter</span>
+      </div>
+      <button id="compose">
+        <img src="https://icon-icons.com/icons2/510/PNG/32/compose_icon-icons.com_50412.png">
+        Compose
+      </button>
     </nav>
 
     <!-- Page-specific (main) content here -->
@@ -41,6 +47,7 @@
           <input type="submit" value="Tweet">
           <span class="counter">140</span>
         </form>
+        <div id="error-message">Error:</div>
       </section>
       <div id="tweet-container">
         <!-- <article class="single-tweet">
