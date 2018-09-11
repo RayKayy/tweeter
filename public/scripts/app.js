@@ -43,7 +43,7 @@ function formSubmit() {
       $.ajax("/tweets", { method: 'POST', data })
       .then(() => {
         $(this).children('textarea').val('');
-        console.log($(this).children('.counter').text('140'));
+        $(this).children('.counter').text('140');
         loadTweets();
       });
     }
