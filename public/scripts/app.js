@@ -8,6 +8,7 @@ function createTweetElement(db) {
   const elaspe = Date.now() - db.created_at;
   const days = Math.floor(elaspe / (8.64 * Math.pow(10, 7)));
   const weeks = Math.floor(days / 7);
+  const hours = days / 24;
   let ago = `${days} days ago`
   if (weeks >= 1) {
     ago = `${weeks} weeks ago`
@@ -26,7 +27,8 @@ function createTweetElement(db) {
       <div class="footer-icon">
         <img src="/images/flag.png">
         <img src="/images/retweet.png">
-        <img src="/images/heart.png">
+        <img class="like" src="/images/heart.png">
+        <p class="like-count">0</p>
       </div>
     </footer>`
 
