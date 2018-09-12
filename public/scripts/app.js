@@ -15,10 +15,12 @@ function createTweetElement(db) {
   const elaspe = Date.now() - db.created_at;
   const days = Math.floor(elaspe / (8.64 * (10 ** 7)));
   const weeks = Math.floor(days / 7);
-  const hours = days / 24;
-  let ago = `${days} days ago`;
-  if (weeks >= 1) {
-    ago = `${weeks} weeks ago`;
+  const hours = Math.floor(((elaspe / (8.64 * (10 ** 7))) * 24));
+  let ago = `${hours} hour(s) ago`;
+  if (days >= 1) {
+    ago = `${days} day(s) ago`;
+  } if (weeks >= 1) {
+    ago = `${weeks} week(s) ago`;
   }
   const $tweet = $('<article>').addClass('single-tweet');
   const header = `
