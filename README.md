@@ -21,6 +21,6 @@ Tweeter is a simple, single-page Twitter clone; using AJAX to make asychronous X
 
 ## Screenshots
 
-!["Screenshot of compose box with Error message."]("https://github.com/RayKayy/tweeter/blob/master/docs/tweet-box1.png?raw=true")
-!["Screenshot of compose box with Error message 2."]("https://github.com/RayKayy/tweeter/blob/master/docs/tweet-box2.png?raw=true")
-!["Screenshot of tweets"]("https://github.com/RayKayy/tweeter/blob/master/docs/tweets.png?raw=true")
+!['Screenshot of compose box with Error message'](https://github.com/RayKayy/tweeter/blob/master/docs/tweet-box1.png?raw=true)
+!['Screenshot of compose box with Error message 2'](https://github.com/RayKayy/tweeter/blob/master/docs/tweet-box2.png?raw=tru)
+!['Screenshot of tweets'](https://github.com/RayKayy/tweeter/blob/master/docs/tweets.png?raw=true)
