@@ -13,25 +13,25 @@
 }
 
 .avatar {
-  width: 7vh;
-  height: 7vh;
-  margin-top: 3%;
-  margin-left: 3%;
+  width: 3.2em;
+  height: 3.2em;
   border-radius: 15px;
 }
 
 .t-header {
   position: relative;
   background-color: lightgrey;
-  height: 10vh;
+  height: 4em;
   line-height: 10vh;
   opacity: .5;
+  padding: 5px;
 }
 
 .username {
   position: absolute;
   top: 0;
   margin-left: 5px;
+  line-height: 4em;
 }
 
 .created-on {
