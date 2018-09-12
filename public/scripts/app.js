@@ -103,9 +103,19 @@ function toggleCompose() {
   });
 }
 
+function likeCount() {
+  console.log($('.like'));
+  const $button = $('.like');
+  $button.on('click', (e) => {
+    console.log($(e.target).siblings('p').html());
+  });
+}
+
 
 $(document).ready(function () {
   loadTweets();
   formSubmit();
   toggleCompose();
+  likeCount();
+  console.log($('.like'));
 });
