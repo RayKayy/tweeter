@@ -52,18 +52,19 @@ function formSubmit() {
   $post.on('submit', function(e) {
     $error.hide({
       opacity: 'toggle',
+      done: $error.text(''),
     });
     e.preventDefault();
     const data = $(this).serialize()
     if (data.length === 5) {
-      $error.text('Error: Tweet cannot be empty');
       $error.show({
         opacity: 'toggle',
+        done: $error.text('Error: Tweet cannot be empty'),
       });
     } else if (data.length > 145) {
-      $error.text('Error: Tweets cannot exceed 140 characters.');
       $error.show({
         opacity: 'toggle',
+        done: $error.text('Error: Tweets cannot exceed 140 characters.'),
       });
     } else {
       $.ajax("/tweets", { method: 'POST', data })
