@@ -4,23 +4,30 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+// Helper function to escape text to prevent XSS;
+function escape(str) {
+  const div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+}
+
 function createTweetElement(db) {
   const elaspe = Date.now() - db.created_at;
-  const days = Math.floor(elaspe / (8.64 * Math.pow(10, 7)));
+  const days = Math.floor(elaspe / (8.64 * (10 ** 7)));
   const weeks = Math.floor(days / 7);
   const hours = days / 24;
-  let ago = `${days} days ago`
+  let ago = `${days} days ago`;
   if (weeks >= 1) {
-    ago = `${weeks} weeks ago`
+    ago = `${weeks} weeks ago`;
   }
-  const $tweet = $("<article>").addClass("single-tweet");
+  const $tweet = $('<article>').addClass('single-tweet');
   const header = `
     <header class="t-header">
       <img class="avatar" src="${escape(db.user.avatars.small)}">
       <strong class="username">${escape(db.user.name)}</strong>
       <small class="user-tag">${escape(db.user.handle)}r</small>
-    </header>`
-  const body = `<p class="tweet-body">${escape(db.content.text)}</p>`
+    </header>`;
+  const body = `<p class="tweet-body">${escape(db.content.text)}</p>`;
   const footer = `
     <footer class="created-on">
       ${escape(ago)}
@@ -30,7 +37,7 @@ function createTweetElement(db) {
         <img class="like" src="/images/heart.png">
         <p class="like-count">0</p>
       </div>
-    </footer>`
+    </footer>`;
 
   $tweet.append(header);
   $tweet.append(body);
@@ -45,17 +52,37 @@ function renderTweet(arr) {
   });
 }
 
+// Returns an array of tweets through API
+function loadTweets() {
+  $.ajax('/tweets', { method: 'GET' })
+    .then((data) => {
+      $('#tweet-container').empty();
+      renderTweet(data);
+    });
+}
+
+function toggleCompose() {
+  const $button = $('#compose');
+  $button.click(() => {
+    $('.new-tweet').animate({
+      height: 'toggle',
+      opacity: 'toggle',
+    });
+    $('.new-tweet textarea').focus();
+  });
+}
+
 // Intercepts form submition and use AJAX instead.
 function formSubmit() {
-  const $error = $("#error-message");
+  const $error = $('#error-message');
   const $post = $('#create-tweet');
-  $post.on('submit', function(e) {
+  $post.on('submit', function (e) {
     $error.hide({
       opacity: 'toggle',
       done: $error.text(''),
     });
     e.preventDefault();
-    const data = $(this).serialize()
+    const data = $(this).serialize();
     if (data.length === 5) {
       $error.show({
         opacity: 'toggle',
@@ -67,45 +94,17 @@ function formSubmit() {
         done: $error.text('Error: Tweets cannot exceed 140 characters.'),
       });
     } else {
-      $.ajax("/tweets", { method: 'POST', data })
-      .then(() => {
-        $(this).children('textarea').val('');
-        $(this).children('.counter').text('140');
-        loadTweets();
-      });
+      $.ajax('/tweets', { method: 'POST', data })
+        .then(() => {
+          $(this).children('textarea').val('');
+          $(this).children('.counter').text('140');
+          loadTweets();
+        });
     }
   });
 }
 
-// Returns an array of tweets through API
-function loadTweets() {
-  $.ajax("/tweets", { method: "GET" })
-  .then((data) => {
-    $('#tweet-container').empty();
-    renderTweet(data);
-  })
-}
-
-// Helper function to escape text to prevent XSS;
-function escape(str) {
-  const div = document.createElement('div');
-  div.appendChild(document.createTextNode(str));
-  return div.innerHTML;
-}
-
-function toggleCompose() {
-  const $button = $('#compose');
-  $button.click(() => {
-    $('.new-tweet').animate({
-      height: "toggle",
-      opacity: "toggle",
-    })
-    $('.new-tweet textarea').focus();
-  });
-}
-
-
-$(document).ready(function () {
+$(document).ready(() => {
   loadTweets();
   formSubmit();
   toggleCompose();
