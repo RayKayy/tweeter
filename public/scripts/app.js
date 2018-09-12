@@ -106,19 +106,17 @@ function formSubmit() {
   });
 }
 
-function likeCount() {
-  console.log($('.like'));
-  const $button = $('.like');
-  $button.on('click', (e) => {
-    console.log($(e.target).siblings('p').html());
-  });
-}
-
-
 $(document).ready(() => {
   loadTweets();
   formSubmit();
   toggleCompose();
+  function likeCount() {
+    const $button = $('.like');
+    console.log($button);
+
+    $button.on('click', (e) => {
+      console.log(e);
+    });
+  }
   likeCount();
-  console.log($('.like'));
 });
