@@ -8,6 +8,10 @@
   opacity: 1;
 }
 
+.single-tweet:hover .footer-icon {
+  opacity: .8;
+}
+
 .single-tweet:hover {
  border: 1px solid lightgrey;
 }
@@ -39,7 +43,11 @@
   font-size: .8em;
   height: 3em;
   line-height: 3em;
-  padding-left: 3%;
+  display: flex;
+  padding: 3px 5px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
 }
 
 .tweet-body {
@@ -50,4 +58,11 @@
 .user-tag {
   position: absolute;
   right: 3%;
+  line-height: 4em;
+}
+
+.footer-icon {
+  display: inline-block;
+  height: 90%;
+  opacity: 0;
 }

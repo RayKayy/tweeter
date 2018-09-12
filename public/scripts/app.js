@@ -20,7 +20,15 @@ function createTweetElement(db) {
       <small class="user-tag">${escape(db.user.handle)}r</small>
     </header>`
   const body = `<p class="tweet-body">${escape(db.content.text)}</p>`
-  const footer = `<footer class="created-on">${escape(ago)}</footer>`
+  const footer = `
+    <footer class="created-on">
+      ${escape(ago)}
+      <div class="footer-icon">
+        <img src="/images/flag.png">
+        <img src="/images/retweet.png">
+        <img src="/images/heart.png">
+      </div>
+    </footer>`
 
   $tweet.append(header);
   $tweet.append(body);
